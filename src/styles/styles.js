@@ -9,20 +9,6 @@ const useStyles = makeStyles({
         height: '100%',
         marginTop: 20
     },
-    avatar: {
-        backgroundColor: '#3f51b5'
-    },
-    input: {
-        margin: '5px 0'
-    },
-    button: {
-        margin: '10px 0'
-    },
-    error: {
-        color: 'red', 
-        fontSize: 15,
-        textAlign: 'center'
-    },
     card: {
         display: 'flex',
         flexDirection: 'column',
@@ -32,6 +18,20 @@ const useStyles = makeStyles({
         height: 'auto',
         backgroundColor: '#fff',
         padding: 20
+    },
+    input: {
+        margin: '5px 0'
+    },
+    button: {
+        margin: '10px 0'
+    },
+    avatar: {
+        backgroundColor: '#3f51b5'
+    },
+    error: {
+        color: 'red', 
+        fontSize: 15,
+        textAlign: 'center'
     }
 })
 
