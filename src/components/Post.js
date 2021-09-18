@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { ListItem, ListItemText, CircularProgress } from '@material-ui/core'
-import useStyles from '../styles/styles'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles({
+    post: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: 'auto',
+        minHeight: 100,
+        textAlign: 'left',
+        marginBottom: 10,
+        padding: 20
+    }
+})
 
 export default function Post({user, title, body}) {
     const classes = useStyles()

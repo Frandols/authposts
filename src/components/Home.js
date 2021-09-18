@@ -1,10 +1,55 @@
 import React, { useState, useEffect } from 'react'
 import { Grid, Paper, IconButton, AppBar, Toolbar, Dialog, Drawer, Snackbar, CircularProgress, List, ListItem, ListItemText, Divider } from '@material-ui/core'
 import { Menu, Add, Close } from '@material-ui/icons'
-import useStyles from '../styles/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import Post from './Post'
 import CreatePostForm from './CreatePostForm'
+
+const useStyles = makeStyles({
+    home: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100vw',
+        height: '100vh',
+        maxWidth: 600
+    },
+    bar: {
+        width: '100vw', 
+        backgroundColor: '#3f51b5'
+    },
+    header: {
+        height: '10%',
+        padding: '0 40px',
+        textAlign: 'left'
+    },
+    title: {
+        margin: 0,
+        fontWeight: 'normal'
+    },
+    main: {
+        flex: 1,
+        flexWrap: 'nowrap',
+        flexDirection: 'column',
+        padding: '0 20px 20px 20px',
+        overflow: 'scroll'
+    },
+    add: {
+        position: 'absolute',
+        bottom: 20,
+        zIndex: 1
+    },
+    dialog: {
+        color: '#fff',
+        zIndex: 1
+    },
+    menu: {
+        width: '70vw', 
+        maxWidth: 500
+    }
+})
 
 export default function Home() {
     const classes = useStyles()

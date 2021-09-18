@@ -36,7 +36,7 @@ export default function SignUp({handleChange}){
         className={classes.grid}>
             <Paper 
             elevation={0} 
-            className={classes.sign}>
+            className={classes.paper}>
                 <Grid 
                 align='center'>
                     <Avatar 
