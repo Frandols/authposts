@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { TextField, Button, DialogContent, DialogTitle, DialogContentText } from '@material-ui/core'
+import useStyles from '../styles/styles'
 
-export default function PostSend({ open, setOpen, getPosts }) {
+export default function CreatePostForm({ open, setOpen, getPosts }) {
+    const classes = useStyles()
+
     const [form, setForm] = useState({
         title: '',
         body: ''
@@ -32,7 +35,7 @@ export default function PostSend({ open, setOpen, getPosts }) {
         <>
             <DialogTitle>Create a post</DialogTitle>
             <DialogContent
-            style={styles.card}>
+            className={classes.card}>
                 <DialogContentText>Write title and body. Body must have at least 15 characters.</DialogContentText>
                 <TextField 
                 label='Title' 
@@ -40,7 +43,7 @@ export default function PostSend({ open, setOpen, getPosts }) {
                 variant='outlined'
                 value={form.title}
                 onChange={e => setForm({...form, title: e.target.value})}
-                style={styles.input} 
+                className={classes.input} 
                 fullWidth/>
                 <TextField 
                 label='Body' 
@@ -50,13 +53,13 @@ export default function PostSend({ open, setOpen, getPosts }) {
                 variant='outlined'
                 value={form.body}
                 onChange={e => setForm({...form, body: e.target.value})}
-                style={styles.input} 
+                className={classes.input} 
                 fullWidth/>
                 <Button 
                 color='primary' 
                 variant='contained'
                 onClick={() => sendPost()}
-                style={styles.button} 
+                className={classes.button} 
                 disabled={form.title === '' || form.body.length < 16}
                 fullWidth>
                     Post
@@ -64,23 +67,4 @@ export default function PostSend({ open, setOpen, getPosts }) {
             </DialogContent>
         </>
     )
-}
-
-const styles = {
-    card: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 'auto',
-        width: 'auto',
-        padding: 20,
-        backgroundColor: '#fff'
-    },
-    input: {
-        margin: '5px 0'
-    },
-    button: {
-        margin: '10px 0'
-    }
 }

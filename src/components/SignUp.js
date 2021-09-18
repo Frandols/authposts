@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core'
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
+import useStyles from '../styles/styles'
 
 export default function SignUp({handleChange}){
+    const classes = useStyles()
+
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -30,14 +33,14 @@ export default function SignUp({handleChange}){
     }
     return (
         <Grid 
-        style={styles.grid}>
+        className={classes.grid}>
             <Paper 
             elevation={0} 
-            style={styles.paper}>
+            className={classes.sign}>
                 <Grid 
                 align='center'>
                     <Avatar 
-                    style={styles.avatar}>
+                    className={classes.avatar}>
                         <AddCircleOutlineOutlinedIcon />
                     </Avatar>
                     <h2>Sign Up</h2>
@@ -47,7 +50,7 @@ export default function SignUp({handleChange}){
                 placeholder='Enter your name'
                 value={form.name}
                 onChange={e => setForm({...form, name: e.target.value})}
-                style={styles.input} 
+                className={classes.input} 
                 required
                 fullWidth/>
                 <TextField 
@@ -56,7 +59,7 @@ export default function SignUp({handleChange}){
                 type='email'
                 value={form.email}
                 onChange={e => {setForm({...form, email: e.target.value}); setError(null)}}
-                style={styles.input}  
+                className={classes.input}  
                 required
                 fullWidth/>
                 <TextField 
@@ -65,7 +68,7 @@ export default function SignUp({handleChange}){
                 type='password'
                 value={form.password}
                 onChange={e => setForm({...form, password: e.target.value})}
-                style={styles.input} 
+                className={classes.input} 
                 required
                 fullWidth/>
                 <TextField 
@@ -74,47 +77,22 @@ export default function SignUp({handleChange}){
                 type='password'
                 value={form.passwordConfirmation}
                 onChange={e => setForm({...form, passwordConfirmation: e.target.value})}
-                style={styles.input} 
+                className={classes.input} 
                 required
                 fullWidth/>
                 <Button 
                 color='primary'
                 variant='contained' 
                 onClick={() => signUp()}
-                style={styles.button} 
+                className={classes.button} 
                 disabled={form.name === '' || form.email === '' || form.password.length < 6 || form.passwordConfirmation !== form.password}
                 fullWidth>
                     Sign up
                 </Button>
                 {
-                    error ? <p style={styles.error}>{error}</p> : null
+                    error ? <p className={classes.error}>{error}</p> : null
                 }
             </Paper>
         </Grid>
     )
-}
-
-const styles = {
-    grid: {
-        padding: 40
-    },
-    paper: {
-        marginTop: 20,
-        height: '100%',
-        width: '100%'
-    },
-    avatar: {
-        backgroundColor: '#3f51b5'
-    },
-    input: {
-        margin: '5px 0'
-    },
-    button: {
-        margin: '10px 0'
-    },
-    error: {
-        color: 'red', 
-        textAlign: 'center', 
-        fontSize: 15
-    }
 }

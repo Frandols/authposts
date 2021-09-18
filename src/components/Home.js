@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Paper, IconButton, AppBar, Toolbar, Dialog, Snackbar, CircularProgress } from '@material-ui/core'
+import { Grid, Paper, IconButton, AppBar, Toolbar, Dialog, Drawer, Snackbar, CircularProgress, List, ListItem, ListItemText, Divider } from '@material-ui/core'
 import { Menu, Add, Close } from '@material-ui/icons'
+import useStyles from '../styles/styles'
 
-import Drawer from './Drawer'
 import Post from './Post'
-import PostSend from './PostSend'
+import CreatePostForm from './CreatePostForm'
 
 export default function Home() {
+    const classes = useStyles()
+
     const [isLoading, setIsLoading] = useState(true)
 
     const [user, setUser] = useState({name: ''})
@@ -45,20 +47,45 @@ export default function Home() {
 
         setPosts((await res.json()).posts.reverse())
     }
+    const signOut = () => {
+        localStorage.removeItem('accessToken')
+        window.open('/sign', '_self')
+    }
 
     if(isLoading) return <CircularProgress />
     return (
         <Grid>
             <Drawer 
-            open={open.drawer} 
-            setOpen={setOpen}
-            user={user}/>
+            anchor="left" 
+            open={open.drawer}
+            onClose={() => setOpen({...open, drawer: false})}>
+                <div
+                role="presentation"
+                className={classes.menu}>
+                    <List>
+                        <ListItem 
+                        button>
+                            <ListItemText 
+                            primary={`Welcome, ${user.name}!`}/>
+                        </ListItem>
+                    </List>
+                    <Divider />
+                    <List>
+                        <ListItem 
+                        button
+                        onClick={() => signOut()}>
+                            <ListItemText 
+                            primary="Sign out"/>
+                        </ListItem>
+                    </List>
+                </div>
+            </Drawer>
             <Paper 
             elevation={0} 
-            style={styles.paper}>
+            className={classes.home}>
                 <AppBar
                 position="static" 
-                style={{width: '100vw', backgroundColor: '#3f51b5'}}>
+                className={classes.bar}>
                     <Toolbar>
                         <IconButton 
                         onClick={() => setOpen({...open, drawer: true})}>
@@ -76,82 +103,44 @@ export default function Home() {
                     size="small"
                     aria-label="close"
                     color="inherit"
-                    onClick={() => setOpen({...open, snackbar: false})}
-                    >
+                    onClick={() => setOpen({...open, snackbar: false})}>
                         <Close 
-                        fontSize="small" />
+                        fontSize="small"/>
                     </IconButton>
-                } />
+                }/>
                 <Dialog 
                 open={open.dialog} 
                 onClose={() => setOpen({...open, dialog: false})}
-                style={styles.dialog}>
-                    <PostSend 
+                className={classes.dialog}>
+                    <CreatePostForm 
                     open={open} 
                     setOpen={setOpen} 
                     getPosts={getPosts}/>
                 </Dialog>
                 <IconButton
                 onClick={() => setOpen({...open, dialog: true})}
-                style={styles.add}>
+                style={{backgroundColor: '#3f51b5'}}
+                className={classes.add}>
                     <Add/>
                 </IconButton>
                 <Grid 
                 container 
                 alignItems="center" 
-                style={styles.header}>
-                    <h2 style={styles.title}>Posts</h2>
+                className={classes.header}>
+                    <h2 className={classes.title}>Posts</h2>
                 </Grid>
                 <Grid 
                 container
                 justifyContent="flex-start" 
                 alignItems="center"
-                style={styles.main}>
+                className={classes.main}>
                     {
                         posts.map(
-                            post => <Post key={post.postId} user={post.user} title={post.title} body={post.body} />
+                            post => <Post key={post.postId} user={post.user} title={post.title} body={post.body}/>
                         )
                     }
                 </Grid>
             </Paper>
         </Grid>
     )
-}
-
-const styles = {
-    paper: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '100vw',
-        height: '100vh',
-        maxWidth: 600
-    },
-    header: {
-        height: '10%',
-        textAlign: 'left',
-        padding: '0 40px'
-    },
-    title: {
-        fontWeight: 'normal', 
-        margin: 0
-    },
-    main: {
-        flex: 1,
-        flexWrap: 'nowrap',
-        flexDirection: 'column',
-        padding: '0 20px 20px 20px',
-        overflow: 'scroll'
-    },
-    add: {
-        backgroundColor: '#3f51b5',
-        position: 'absolute',
-        bottom: 20,
-        zIndex: 1
-    },
-    dialog: {
-        zIndex: 1, 
-        color: '#fff'
-    }
 }

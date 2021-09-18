@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { ListItem, ListItemText, CircularProgress } from '@material-ui/core'
+import useStyles from '../styles/styles'
 
 export default function Post({user, title, body}) {
+    const classes = useStyles()
+
     const [isLoading, setIsLoading] = useState(true)
 
     const [name, setName] = useState(null)
@@ -21,10 +24,11 @@ export default function Post({user, title, body}) {
     return (
         <ListItem 
         button 
-        style={styles.post}>
+        className={classes.post}>
             {
                 isLoading ? 
-                <CircularProgress size={20}/>
+                <CircularProgress 
+                size={20}/>
                 :
                 <ListItemText 
                 primary={`${name}: ${title}`} 
@@ -32,18 +36,4 @@ export default function Post({user, title, body}) {
             }
         </ListItem>
     )
-}
-
-const styles = {
-    post: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: 'auto',
-        minHeight: 100,
-        textAlign: 'left',
-        marginBottom: 10,
-        padding: 20
-    }
 }

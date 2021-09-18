@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import useStyles from '../styles/styles'
 
 export default function SignIn(){
+    const classes = useStyles()
+
     const [form, setForm] = useState({
         email: '',
         password: ''
@@ -29,14 +32,14 @@ export default function SignIn(){
     }
     return(
         <Grid 
-        style={styles.grid}>
+        className={classes.grid}>
             <Paper 
             elevation={0} 
-            style={styles.paper}>
+            className={classes.sign}>
                 <Grid 
                 align='center'>
                     <Avatar 
-                    style={styles.avatar}>
+                    className={classes.avatar}>
                         <LockOutlinedIcon/>
                     </Avatar>
                     <h2>Sign In</h2>
@@ -47,7 +50,7 @@ export default function SignIn(){
                 type='email'
                 value={form.email}
                 onChange={(e) => setForm({...form, email: e.target.value})}
-                style={styles.input} 
+                className={classes.input} 
                 required
                 fullWidth/>
                 <TextField 
@@ -56,47 +59,22 @@ export default function SignIn(){
                 type='password'
                 value={form.password}
                 onChange={(e) => setForm({...form, password: e.target.value})}
-                style={styles.input}  
+                className={classes.input}  
                 required
                 fullWidth/>
                 <Button 
                 color='primary' 
                 variant="contained" 
                 onClick={() => signIn()}
-                style={styles.button} 
+                className={classes.button} 
                 disabled={form.email === '' || form.password.length < 6}
                 fullWidth>
                     Sign in
                 </Button>
                 {
-                    error ? <p style={styles.error}>{error}</p> : null
+                    error ? <p className={classes.error}>{error}</p> : null
                 }
             </Paper>
         </Grid>
     )
-}
-
-const styles = {
-    grid: {
-        padding: 40
-    },
-    paper: {
-        marginTop: 20,
-        height: '100%',
-        width: '100%'
-    },
-    avatar: {
-        backgroundColor: '#3f51b5'
-    },
-    input: {
-        margin: '5px 0'
-    },
-    button: {
-        margin: '10px 0'
-    },
-    error: {
-        color: 'red', 
-        textAlign: 'center', 
-        fontSize: 15
-    }
 }
