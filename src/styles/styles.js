@@ -32,6 +32,10 @@ const useStyles = makeStyles({
         color: 'red', 
         fontSize: 15,
         textAlign: 'center'
+    },
+    dialog: {
+        color: '#fff',
+        zIndex: 1
     }
 })
 

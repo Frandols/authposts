@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TextField, Button, DialogContent, DialogTitle, DialogContentText } from '@material-ui/core'
+import { TextField, Button, Dialog, DialogContent, DialogTitle, DialogContentText } from '@material-ui/core'
 import useStyles from '../styles/styles'
 
 export default function CreatePostForm({ open, setOpen, getPosts }) {
@@ -32,7 +32,10 @@ export default function CreatePostForm({ open, setOpen, getPosts }) {
         })
     }
     return (
-        <>
+        <Dialog
+        open={open.dialog}
+        onClose={() => setOpen({...open, dialog: false})}
+        className={classes.dialog}>
             <DialogTitle>Create a post</DialogTitle>
             <DialogContent
             className={classes.card}>
@@ -65,6 +68,6 @@ export default function CreatePostForm({ open, setOpen, getPosts }) {
                     Post
                 </Button>
             </DialogContent>
-        </>
+        </Dialog>
     )
 }

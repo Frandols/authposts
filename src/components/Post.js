@@ -46,7 +46,6 @@ const useStyles = makeStyles({
         height: 'auto',
         minHeight: 100,
         textAlign: 'left',
-        marginBottom: 10,
-        padding: 20
+        padding: '20px 40px'
     }
 })
