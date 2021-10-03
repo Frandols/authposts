@@ -30,6 +30,10 @@ export default function CreatePostForm({ open, setOpen, getPosts }) {
             dialog: false,
             snackbar: true 
         })
+        setForm({
+            title: '',
+            body: ''
+        })
     }
     return (
         <Dialog
