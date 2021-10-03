@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core'
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
-import useStyles from '../styles/styles'
+import useStyles from '../styles'
 
 export default function SignUp({handleChange}){
     const classes = useStyles()

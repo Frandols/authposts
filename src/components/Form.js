@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TextField, Button, Dialog, DialogContent, DialogTitle, DialogContentText } from '@material-ui/core'
-import useStyles from '../styles/styles'
+import useStyles from '../styles'
 
 export default function CreatePostForm({ open, setOpen, getPosts }) {
     const classes = useStyles()
