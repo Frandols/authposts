@@ -20,6 +20,7 @@ export default function Bar({ open, setOpen }) {
 
 const useStyles = makeStyles({
     bar: {
+        position: 'fixed',
         width: '100vw', 
         backgroundColor: '#3f51b5'
     }

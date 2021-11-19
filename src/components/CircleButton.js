@@ -16,7 +16,7 @@ export default function CircleButton({ open, setOpen }) {
 
 const useStyles = makeStyles({
     button: {
-        position: 'absolute',
+        position: 'fixed',
         bottom: 20,
         zIndex: 1
     }
